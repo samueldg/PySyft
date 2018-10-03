@@ -18,7 +18,6 @@ def my_test_suite():
     test_suite = test_loader.discover('test', pattern='*_test.py')
     return test_suite
 
-
 requirements = read('requirements.txt').split()
 
 setup(
