@@ -1295,6 +1295,8 @@ class _FixedPrecisionTensor(_SyftTensor):
         else:
             return "[Fixed precision]\n" + self.child.__repr__()
 
+    def relu(self):
+        return relu(self.parent)
 
 class _SPDZTensor(_SyftTensor):
     """

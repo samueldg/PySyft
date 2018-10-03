@@ -3,7 +3,7 @@
 from syft.spdz.spdz import (spdz_add, spdz_mul,
                            generate_zero_shares_communication,
                            get_ptrdict,
-                           Q_BITS, field)
+                           Q_BITS, field, get_workers)
 import syft
 from syft.core.frameworks.torch.utils import chain_print
 import torch
@@ -157,7 +157,7 @@ def msb(a_sh, alice, bob):
     return a.view(*list(input_shape))
 
 def relu_deriv(a_sh):
-    return msb(a_sh, *list(a_sh.child.shares.child.pointer_tensor_dict.keys()))
+    return msb(a_sh, *get_workers(a_sh))
 
 def relu(a):
     return a * relu_deriv(a)
@@ -165,3 +165,7 @@ def relu(a):
 def random_as(tensor, mod=L):
     r = torch.LongTensor(tensor.shape).random_(mod)
     return r.type_as(tensor)
+
+def division(a,b):
+    raise NotImplementedError()
+
